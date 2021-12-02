@@ -57,7 +57,7 @@ For containers that use larger amounts of data or for storing downloads, I use a
 └── media
     ├── anime/
     ├── cartoons/
-    ├── moovies/
+    ├── movies/
     └── rclone/
     │   └── cache/
     │   └── drive_1/
