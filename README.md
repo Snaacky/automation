@@ -44,9 +44,9 @@ Most of my containers are hosted in `/srv/containers` and the layout looks somet
     └── docker-compose.yml
 ```
 
-Every Docker container has its own folder for the relevant services data. This usually means the parent directory, the docker-compose.yml within the folder, and a config folder for storing any sort of persistent data on the host.
+Every Docker container has its own parent folder named after the service for storing the relevant data. Inside the parent folder is the `docker-compose.yml` file and the `/config` folder that contains any sort of configuration files or any files that need to be persistently stored on the host OS.
 
-For containers that use larger amounts of data or for storing downloads, I use a mergefs mount to bind 3x8TB drives together at `/mnt/pool` and store data there rather than on my limited host OS SSD. This is where I store my downloads and my Plex library.
+For containers that use larger amounts of data or for storing downloads, I use a mergefs mount to bind 3x8TB drives together at `/mnt/pool` and store data there rather than in the `/srv/containers` folder on my storage limited host OS SSD. This is where I store my downloads and my Plex library.
 
 ```
 /mnt/pool$ tree -d
