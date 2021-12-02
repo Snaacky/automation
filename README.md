@@ -18,9 +18,9 @@ Most of my containers are hosted in `/srv/containers` and the layout looks somet
 │   └── docker-compose.yml
 ├── plex
 │   └── config/
-│       └── rclone/
-│           ├── drive_1_config/
-│           └── drive_2_config/
+│       └── rclone/ (only if using rclone mounts)
+│           ├── mount_one_config/
+│           └── mount_two_config/
 │   └── docker-compose.yml
 ├── prowlarr
 │   └── config/
@@ -39,7 +39,7 @@ Most of my containers are hosted in `/srv/containers` and the layout looks somet
 │   └── docker-compose.yml
 └── transmission
     ├── config/
-    │   └── wg0.conf
+    │   └── wg0.conf (only if using WireGuard VPN container)
     └── watch/
     └── docker-compose.yml
 ```
