@@ -75,9 +75,9 @@ For containers that use larger amounts of data (such as Plex's metadata) or for 
    
 # Service breakdown
 
-[Sonarr](https://sonarr.tv/) is used for interacting with TV show torrent trackers and Usenet indexers. This service automatically checks for and downloads the `.torrent` or `.nzb` for the latest episodes of a TV show and sends them to your torrent client for downloading. In my case, I also have connections established under `Settings -> Connect` to connect my Sonarr instance with my Discord server and my Plex Media Server. 
+[Sonarr](https://sonarr.tv/) is used for interacting with TV show torrent trackers and Usenet indexers. This service automatically checks for and downloads the `.torrent` or `.nzb` for the latest episodes of a TV show and sends them to your BitTorrent or Usenet client for downloading. In my case, I also have connections established under `Settings -> Connect` to connect my Sonarr instance with my Discord server and my Plex Media Server. 
 
-[Radarr](https://radarr.video/) is used for interacting with movies torrent trackers and Usenet indexers. This service automatically checks for and downloads the `.torrent` or `.nzb` for movies and sends them to your torrent client for downloading. In my case, I also have connections established under `Settings -> Connect` to connect my Sonarr instance with my Discord server and my Plex Media Server.
+[Radarr](https://radarr.video/) is used for interacting with movies torrent trackers and Usenet indexers. This service automatically checks for and downloads the `.torrent` or `.nzb` for movies and sends them to your BitTorrent or Usenet for downloading. In my case, I also have connections established under `Settings -> Connect` to connect my Sonarr instance with my Discord server and my Plex Media Server.
 
 [Transmission](https://transmissionbt.com/) is an extremely stable BitTorrent client used for downloading `.torrent` files. In my case, I am using a 3rd party web UI for Transmission called Flood which hooks into it via the Transmission API and provides a better UI/UX experience than stock Transmission. I also have a WireGuard VPN container in front of my Transmission container, routing all of my Transmission traffic through the VPN.
 
