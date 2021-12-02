@@ -5,7 +5,7 @@ services:
     ports:
       - 4545:4545 # The web UI will be accessible at the address: requestrr:7878
     volumes:
-      - /srv/containers/requestrr/config:/root/config # Path to where your persistent requestrr data will be stored.
+      - /your/path/to/your/requestrr/config:/root/config # Path to where your persistent requestrr data will be stored.
     restart: unless-stopped
     image: darkalfx/requestrr
     networks:
