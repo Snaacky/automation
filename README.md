@@ -68,3 +68,25 @@ For containers that use larger amounts of data (such as Plex's metadata) or for 
     │   └── drive_2/
     └── tv/
    ```
+   
+# Service breakdown
+
+[Sonarr](https://sonarr.tv/) is used for interacting with TV show torrent trackers and Usenet indexers. This service automatically checks for and downloads the .torrent or .nzb for the latest episodes of a TV show and sends them to your torrent client for downloading. In my case, I also have connections established under settings -> Connect to connect my Sonarr instance with my Discord server and my Plex Media Server.
+
+[Radarr](https://radarr.video/) is used for interacting with movies torrent trackers and Usenet indexers. This service automatically checks for and downloads the .torrent or .nzb for movies and sends them to your torrent client for downloading. In my case, I also have connections established under settings -> Connect to connect my Sonarr instance with my Discord server and my Plex Media Server.
+
+[Transmission](https://transmissionbt.com/) is an extremely stable BitTorrent client used for downloading .torrent files. In my case, I am using a 3rd party web UI for Transmission called Flood which hooks into it via the Transmission API and provides a better UI/UX experience than stock Transmission. I also have a WireGuard VPN container in front of my Transmission container, routing all of my Transmission traffic through the VPN.
+
+[Flood](https://flood.js.org/) is a front-end web UI for various torrent clients. It offers mobile responsiveness and a better more modern experience than the stock Transmission web UI.
+
+[Prowlarr](https://github.com/Prowlarr/Prowlarr) is used for connecting to torrent trackers that do not natively support Sonarr or Radarr via a Torznab proxy. It will automatically link in with your Sonarr and Radarr once setup properly and doesn't require manual setup for both *arr services unlike Jackett.
+
+[Requestrr](https://github.com/darkalfx/requestrr) is a Discord bot that can be added to a server and used for easily processing requests without having to reveal your Sonarr or Radarr credentials to 3rd parties. It's extremely useful if you're offering a Plex share for others and it also allows you to split TV and anime by category for individual *arr profiles, language, and save pathing unike Ombi.
+
+[SABnzbd](https://sabnzbd.org/) is a Usenet client for downloading .nzb files. You can think of it like Transmission but for Usenet.
+
+[Plex](https://www.plex.tv/) is home theater media server but you probably already know what Plex is if you're here in the first place.
+
+[rclone](https://rclone.org/) is a command line based program used for interacting with files on cloud storage. It's most prominently used feature is the ability to mount a cloud storage drive to your local file system. In my case, this is used inconjunction with Google Drive to play files from my remote cloud storage accounts on Plex.
+
+[WireGuard](https://www.wireguard.com/) is a fast, more modern, and secure alternative to OpenVPN. In my case, it's used for routing traffic from my Transmission container securely to my VPN provider.
