@@ -17,8 +17,8 @@ Most of my containers are hosted in `/srv/containers` and the layout looks somet
 │   └── config/
 │   └── docker-compose.yml
 ├── plex
-│   └── config/
-│       └── rclone/ (only if using rclone mounts)
+│   └── config/ (only contains rclone mount configs)
+│       └── rclone/
 │           ├── mount_one_config/
 │           └── mount_two_config/
 │   └── docker-compose.yml
