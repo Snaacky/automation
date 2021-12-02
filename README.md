@@ -5,6 +5,7 @@ Home theater automation scripts for downloading and processing.
 1. Create a network for your containers to talk to each other on (https://docs.docker.com/engine/reference/commandline/network_create/)
 2. `git clone https://https://github.com/Snaacky/automation`
 3. Edit the relevant config files for your personal situation.
+4. `docker-compose up -d` each of the `docker-compose.yml` files.
 
 # Folder layout
 Most of my containers are hosted in `/srv/containers` and the layout looks something like this:
