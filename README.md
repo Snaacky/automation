@@ -19,12 +19,6 @@ Most of my containers are hosted in `/srv/containers` and the layout looks somet
 │   └── config/
 │   └── docker-compose.yml
 ├── plex
-│   └── config/ (only contains rclone mount configs)
-│       └── rclone/
-│           ├── mount_one_config/
-│               └── .rclone.conf
-│           └── mount_two_config/
-│               └── .rclone.conf
 │   └── docker-compose.yml
 ├── prowlarr
 │   └── config/
@@ -32,6 +26,12 @@ Most of my containers are hosted in `/srv/containers` and the layout looks somet
 ├── radarr
 │   └── config/
 │   └── docker-compose.yml
+├── rclone
+│   └── config/
+│   ├── mount_one_config/
+│       └── .rclone.conf
+│   └── mount_two_config/
+│       └── .rclone.conf
 ├── requestrr
 │   └── config/
 │   └── docker-compose.yml
@@ -47,7 +47,6 @@ Most of my containers are hosted in `/srv/containers` and the layout looks somet
     └── watch/
     └── docker-compose.yml
 ```
-
 Every Docker container has its own parent folder named after the service for storing the relevant data. Inside the parent folder is the `docker-compose.yml` file and the `/config` folder that contains any sort of configuration files or any files that need to be persistently stored on the host OS.
 
 For containers that use larger amounts of data (such as Plex's metadata) or for storing downloads, I use a mergefs mount to bind 3x8TB drives together at `/mnt/pool` and store data there rather than in the `/srv/containers` folder on my storage limited host OS SSD. This is where I store my downloads and my Plex library.
