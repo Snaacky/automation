@@ -90,3 +90,7 @@ For containers that use larger amounts of data (such as Plex's metadata) or for 
 [rclone](https://rclone.org/) is a command line based program used for interacting with files on cloud storage. It's most prominently used feature is the ability to mount a cloud storage drive to your local file system. In my case, this is used inconjunction with Google Drive to play files from my remote cloud storage accounts on Plex.
 
 [WireGuard](https://www.wireguard.com/) is a fast, more modern, and secure alternative to OpenVPN. In my case, it's used for routing traffic from my Transmission container securely to my VPN provider.
+
+# Security warning
+
+I highly recommend that you use the WireGuard VPN container in conjunction with Transmission if you use an ISP or live in a country that cares about BitTorrent traffic. Ensure that all of your containers are properly protected with a secure and unique username and password for accessing their respective web UIs. Only Transmission requires a username and password out of the box and all the others are unsecured by default. Furthermore, you should never port forward an unsecured container through your firewall as you will be exposing all of your BitTorrent and Usenet information onto the Internet for anyone to steal.
