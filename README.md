@@ -22,7 +22,9 @@ Most of my containers are hosted in `/srv/containers` and the layout looks somet
 │   └── config/ (only contains rclone mount configs)
 │       └── rclone/
 │           ├── mount_one_config/
+│               └── .rclone.conf
 │           └── mount_two_config/
+│               └── .rclone.conf
 │   └── docker-compose.yml
 ├── prowlarr
 │   └── config/
