@@ -1,9 +1,12 @@
 # automation
 Home theater automation scripts for downloading and processing.
 
-# Setup
-This repository assumes you have a baseline understanding of how Docker works, what a docker-compose file is, and how to configure one.
+# Introduction
+This repository assumes you have a baseline understanding of how Docker works, what a docker-compose file is, and how to configure one. 
 
+Most of the services/containers included in this setup can operate independently and thus can be added or removed as you feel applicable to your own personal setup. Any services that are inherently bound to another container (i.e Transmission and WireGuard or Plex and rclone) are put together in the same `docker-compose.yml` file and can still be detangled from one another but will require a tiny bit more hands-on config editing.
+
+## Setup:
 1. [Create a network for your containers to talk to each other on](https://docs.docker.com/engine/reference/commandline/network_create/)
 2. `git clone https://https://github.com/Snaacky/automation`
 3. Configure the `docker-compose.yml` files for your personal setup.
@@ -72,9 +75,9 @@ For containers that use larger amounts of data (such as Plex's metadata) or for 
    
 # Service breakdown
 
-[Sonarr](https://sonarr.tv/) is used for interacting with TV show torrent trackers and Usenet indexers. This service automatically checks for and downloads the .torrent or .nzb for the latest episodes of a TV show and sends them to your torrent client for downloading. In my case, I also have connections established under settings -> Connect to connect my Sonarr instance with my Discord server and my Plex Media Server. I primarily use torrent trackers and Usenet indexers that natively link in with Sonarr but I use Prowlarr for the ones that do not.
+[Sonarr](https://sonarr.tv/) is used for interacting with TV show torrent trackers and Usenet indexers. This service automatically checks for and downloads the .torrent or .nzb for the latest episodes of a TV show and sends them to your torrent client for downloading. In my case, I also have connections established under `Settings -> Connect` to connect my Sonarr instance with my Discord server and my Plex Media Server. I primarily use torrent trackers and Usenet indexers that natively link in with Sonarr but I use Prowlarr for the ones that do not.
 
-[Radarr](https://radarr.video/) is used for interacting with movies torrent trackers and Usenet indexers. This service automatically checks for and downloads the .torrent or .nzb for movies and sends them to your torrent client for downloading. In my case, I also have connections established under settings -> Connect to connect my Sonarr instance with my Discord server and my Plex Media Server. I primarily use torrent trackers and Usenet indexers that natively link in with Radarr but I use Prowlarr for the ones that do not.
+[Radarr](https://radarr.video/) is used for interacting with movies torrent trackers and Usenet indexers. This service automatically checks for and downloads the .torrent or .nzb for movies and sends them to your torrent client for downloading. In my case, I also have connections established under `Settings -> Connect` to connect my Sonarr instance with my Discord server and my Plex Media Server. I primarily use torrent trackers and Usenet indexers that natively link in with Radarr but I use Prowlarr for the ones that do not.
 
 [Transmission](https://transmissionbt.com/) is an extremely stable BitTorrent client used for downloading .torrent files. In my case, I am using a 3rd party web UI for Transmission called Flood which hooks into it via the Transmission API and provides a better UI/UX experience than stock Transmission. I also have a WireGuard VPN container in front of my Transmission container, routing all of my Transmission traffic through the VPN.
 
