@@ -75,26 +75,30 @@ For containers that use larger amounts of data (such as Plex's metadata) or for 
    
 # Service breakdown
 
-[Sonarr](https://sonarr.tv/) is used for interacting with TV show torrent trackers and Usenet indexers. This service automatically checks for and downloads the .torrent or .nzb for the latest episodes of a TV show and sends them to your torrent client for downloading. In my case, I also have connections established under `Settings -> Connect` to connect my Sonarr instance with my Discord server and my Plex Media Server. I primarily use torrent trackers and Usenet indexers that natively link in with Sonarr but I use Prowlarr for the ones that do not.
+[Sonarr](https://sonarr.tv/) is used for interacting with TV show torrent trackers and Usenet indexers. This service automatically checks for and downloads the `.torrent` or `.nzb` for the latest episodes of a TV show and sends them to your torrent client for downloading. In my case, I also have connections established under `Settings -> Connect` to connect my Sonarr instance with my Discord server and my Plex Media Server. 
 
-[Radarr](https://radarr.video/) is used for interacting with movies torrent trackers and Usenet indexers. This service automatically checks for and downloads the .torrent or .nzb for movies and sends them to your torrent client for downloading. In my case, I also have connections established under `Settings -> Connect` to connect my Sonarr instance with my Discord server and my Plex Media Server. I primarily use torrent trackers and Usenet indexers that natively link in with Radarr but I use Prowlarr for the ones that do not.
+[Radarr](https://radarr.video/) is used for interacting with movies torrent trackers and Usenet indexers. This service automatically checks for and downloads the `.torrent` or `.nzb` for movies and sends them to your torrent client for downloading. In my case, I also have connections established under `Settings -> Connect` to connect my Sonarr instance with my Discord server and my Plex Media Server.
 
-[Transmission](https://transmissionbt.com/) is an extremely stable BitTorrent client used for downloading .torrent files. In my case, I am using a 3rd party web UI for Transmission called Flood which hooks into it via the Transmission API and provides a better UI/UX experience than stock Transmission. I also have a WireGuard VPN container in front of my Transmission container, routing all of my Transmission traffic through the VPN.
+[Transmission](https://transmissionbt.com/) is an extremely stable BitTorrent client used for downloading `.torrent` files. In my case, I am using a 3rd party web UI for Transmission called Flood which hooks into it via the Transmission API and provides a better UI/UX experience than stock Transmission. I also have a WireGuard VPN container in front of my Transmission container, routing all of my Transmission traffic through the VPN.
 
 [Flood](https://flood.js.org/) is a front-end web UI for various torrent clients. It offers mobile responsiveness and a better more modern experience than the stock Transmission web UI.
 
-[Prowlarr](https://github.com/Prowlarr/Prowlarr) is used for connecting to torrent trackers that do not natively support Sonarr or Radarr via a Torznab proxy. It will automatically link in with your Sonarr and Radarr once setup properly and doesn't require manual setup for both *arr services unlike Jackett.
+[Prowlarr](https://github.com/Prowlarr/Prowlarr) is used for connecting to torrent trackers that do not natively support Sonarr or Radarr via a Torznab proxy. It will automatically link in with your Sonarr and Radarr once setup properly and doesn't require manual setup for both *arr services unlike Jackett. I primarily use torrent trackers and Usenet indexers that natively link in with Radarr but I use Prowlarr for the ones that do not.
 
 [Requestrr](https://github.com/darkalfx/requestrr) is a Discord bot that can be added to a server and used for easily processing requests without having to reveal your Sonarr or Radarr credentials to 3rd parties. It's extremely useful if you're offering a Plex share for others and it also allows you to split TV and anime by category for individual *arr profiles, language, and save pathing unlike Ombi.
 
-[SABnzbd](https://sabnzbd.org/) is a Usenet client for downloading .nzb files. You can think of it like Transmission but for Usenet.
+[SABnzbd](https://sabnzbd.org/) is a Usenet client for downloading `.nzb` files. You can think of it like Transmission but for Usenet.
 
 [Plex](https://www.plex.tv/) is home theater media server but you probably already know what Plex is if you're here in the first place.
 
-[rclone](https://rclone.org/) is a command line based program used for interacting with files on cloud storage. It's most prominently used feature is the ability to mount a cloud storage drive to your local file system. In my case, this is used inconjunction with Google Drive to play files from my remote cloud storage accounts on Plex.
+[rclone](https://rclone.org/) is a command line based program used for interacting with files on cloud storage. It is most prominently known for the ability to mount a cloud storage drive to your local file system. I use rclone to mount files from my Google Drive to my local file system and play those files via Plex.
 
-[WireGuard](https://www.wireguard.com/) is a fast, more modern, and secure alternative to OpenVPN. In my case, it's used for routing traffic from my Transmission container securely to my VPN provider.
+[WireGuard](https://www.wireguard.com/) is a fast, more modern, and secure alternative to OpenVPN. I use WireGuard for routing traffic from my Transmission container securely to my VPN provider.
 
 # Security warning
 
-I highly recommend that you use the WireGuard VPN container to proxy Transmission traffic if you use an ISP or live in a country that cares about BitTorrent traffic. Ensure that all of your containers are properly protected with a secure and unique username and password for accessing their respective web UIs. Only Transmission requires a username and password out of the box and all the others are unsecured by default. Furthermore, you should never port forward an unsecured container through your firewall as you will be exposing all of your BitTorrent and Usenet information onto the Internet for anyone to steal.
+I highly recommend that you use the WireGuard VPN container to proxy Transmission traffic if you use an ISP or live in a country that cares about BitTorrent traffic. 
+
+Ensure that all of your containers are properly protected with a secure and unique username and password for accessing their respective web UIs. Only Transmission requires a username and password out of the box and all the others are unsecured by default. 
+
+Furthermore, you should never port forward an unsecured container through your firewall as you will be exposing all of your BitTorrent and Usenet information onto the Internet for anyone to steal.
