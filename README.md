@@ -28,10 +28,10 @@ Most of my containers are hosted in `/srv/containers` and the layout looks somet
 │   └── docker-compose.yml
 ├── rclone
 │   └── config/
-│   ├── mount_one_config/
-│       └── .rclone.conf
-│   └── mount_two_config/
-│       └── .rclone.conf
+│       └── mount_one_config/
+│           └── .rclone.conf
+│       └── mount_two_config/
+│           └── .rclone.conf
 ├── requestrr
 │   └── config/
 │   └── docker-compose.yml
