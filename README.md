@@ -2,9 +2,11 @@
 Home theater automation scripts for downloading and processing.
 
 # Setup
+This repository assumes you have a baseline understanding of how Docker works, what a docker-compose file is, and how to configure one.
+
 1. [Create a network for your containers to talk to each other on](https://docs.docker.com/engine/reference/commandline/network_create/)
 2. `git clone https://https://github.com/Snaacky/automation`
-3. Edit the relevant config files for your personal situation.
+3. Configure the `docker-compose.yml` files for your personal setup.
 4. *Optional: Generate a `.rclone.conf` (or multiple) if you plan on using rclone remotes.*
 5. *Optional: Generate a `wg0.conf` WireGuard VPN config if you plan on putting Transmission behind a VPN.*
 6. `docker-compose up -d` each of the `docker-compose.yml` files.
