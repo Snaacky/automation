@@ -1,0 +1,49 @@
+---
+version: "2.1"
+services:
+  plex:
+    image: lscr.io/linuxserver/plex
+    container_name: plex
+    restart: unless-stopped
+    environment:
+      - PUID=1000 # Change this to your host OS users UID.
+      - PGID=1000 # Change this to your host OS users GID.
+      - VERSION=docker
+      - PLEX_CLAIM=claim-xxxxxxx # Change this to your Plex claim from https://www.plex.tv/claim/
+    devices: # Used for Intel Quicksync for transcoding, remove this section if you don't have integrated graphics.
+      - /dev/dri:/dev/dri
+    ports:
+      - 32400:32400 # The web UI will be accessible at the address: plex:32400 or app.plex.tv
+    volumes:
+      - /your/path/to/plex/config:/config # Path to where your persistent Plex data will be stored. NOTE: This can get VERY BIG with a lot of title scanned in!
+      - /your/path/to/your/data:/data # Path to where your downloads and media will be stored.
+    networks:
+      - your_network_name_here # Change this to the network you created for your automation containers.
+    depends_on: # This is only necessary if you plan on using rclone remotes and this section can be removed otherwise.
+      - rclone-one
+
+  rclone-one: # Example container if you plan to use Google Drive rclone remotes, otherwise this entire container can be safely removed.
+    container_name: rclone-one
+    restart: unless-stopped
+    cap_add:
+        - SYS_ADMIN
+    security_opt:
+        - seccomp:unconfined
+    privileged: true
+    devices:
+        - /dev/fuse
+    environment:
+        - 'RemotePath=the_name_of_your_remote_in_rclone_config:' # Change this to whatever name you chose in your rclone config.
+        - 'MountCommands=--allow-other --allow-non-empty --dir-cache-time 5000h --poll-interval 10s --umask 002 --user-agent change_this_to_something_random --drive-pacer-min-sleep 10ms --drive-pacer-burst 200 --vfs-cache-mode full --vfs-cache-max-size 500G --vfs-read-ahead 256M --vfs-cache-max-age 5000h --vfs-cache-poll-interval 5m --vfs-read-ahead 2G --cache-dir=/cache' # Change the user-agent to something random.
+    volumes:
+        - /your/path/to/your/rclone/mount:/mnt/mediaefs:shared # Change this to the path you want to mount the rclone mount to on the host OS.
+        - /your/path/to/your/rclone/config:/config:rw # Change this to the place you plan to store your .rclone.conf file in.
+        - /your/path/to/your/plex/cache:/cache:rw # Change this to the place you plan to your Plex cache to. NOTE: This can get VERY BIG with a lot of activity!
+    image: mumiehub/rclone-mount
+
+# I removed my second rclone container for simplicity sake but you can simply duplicate the rclone-one container
+# rename it to rclone-two (or whatever else), update the paths, and infinitely scale that way.
+
+networks:
+  your_network_name_here: # Change this to the network you created for your automation containers.
+    external: true

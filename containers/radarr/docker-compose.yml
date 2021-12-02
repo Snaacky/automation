@@ -1,0 +1,22 @@
+---
+version: "2.1"
+services:
+  radarr:
+    image: lscr.io/linuxserver/radarr
+    container_name: radarr
+    environment:
+      - PUID=1000 # Change this to your host OS users UID.
+      - PGID=1000 # Change this to your host OS users GID.
+      - TZ=Europe/London # Update this to your local timezone in TZ database format.
+    volumes:
+      - /your/path/to/your/radarr/config:/config # Path to where your persistent Radarr data will be stored.
+      - /your/path/to/your/data:/data # Path to where your downloads and media will be stored.
+    ports:
+      - 7878:7878  # The web UI will be accessible at the address: radarr:7878
+    restart: unless-stopped
+    networks:
+      - your_network_name_here # Change this to the network you created for your automation containers.
+
+networks:
+  your_network_name_here: # Change this to the network you created for your automation containers.
+    external: true

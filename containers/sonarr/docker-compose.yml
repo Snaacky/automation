@@ -1,0 +1,22 @@
+---
+version: "2.1"
+services:
+  sonarr:
+    image: lscr.io/linuxserver/sonarr
+    container_name: sonarr
+    environment:
+      - PUID=1000 # Change this to your host OS users UID.
+      - PGID=1000 # Change this to your host OS users GID.
+      - TZ=Europe/London # Update this to your local timezone in TZ database format.
+    volumes:
+      - /your/path/to/your/sonarr/config:/config  # Path to where your persistent Sonarr data will be stored.
+      - /your/path/to/your/data:/data # Path to where your downloads and media will be stored.
+    ports:
+      - 8989:8989 # The web UI will be accessible at the address: sonarr:8080
+    restart: unless-stopped
+    networks:
+      - your_network_name_here # Change this to the network you created for your automation containers.
+
+networks:
+  your_network_name_here: # Change this to the network you created for your automation containers.
+    external: true

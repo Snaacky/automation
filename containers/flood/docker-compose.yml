@@ -1,0 +1,22 @@
+---
+version: "2.1"
+services:
+  flood:
+    container_name: flood
+    image: jesec/flood
+    restart: unless-stopped
+    command: --port 3001 # The web UI will be accessible at the address: flood:3001
+    environment:
+      - PUID=1000 # Change this to your host OS users UID.
+      - PGID=1000 # Change this to your host OS users GID.
+    volumes:
+      - /your/path/to/flood/config:/config # Path to where your persistent Flood data will be stored.
+      - /your/path/to/your/data/:/data # Path to where your downloads and media will be stored.
+    ports:
+      - 3001:3001 
+    networks:
+      - your_network_name_here # Change this to the network you created for your automation containers.
+
+networks:
+  your_network_name_here: # Change this to the network you created for your automation containers.
+    external: true

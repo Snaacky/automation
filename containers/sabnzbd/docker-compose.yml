@@ -1,0 +1,17 @@
+---
+version: "2.1"
+services:
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd
+    container_name: sabnzbd
+    environment:
+      - PUID=1000 # Change this to your host OS users UID.
+      - PGID=1000 # Change this to your host OS users GID.
+      - TZ=Europe/London # Update this to your local timezone in TZ database format.
+    volumes:
+      - /your/path/to/your/sabnzbd/config:/config  # Path to where your persistent SABnzbd data will be stored.
+      - /your/path/to/your/data:/data # Path to where your downloads and media will be stored.
+    ports:
+      - 8080:8080  # The web UI will be accessible at the address: sabnzbd:8080
+      - 9090:9090  # You can also setup SSL on port 9090 but that's out of the scope of this repo.
+    restart: unless-stopped

@@ -1,0 +1,52 @@
+---
+version: "3.3"
+services:
+  # My Transmission client sits behind a Wireguard VPN, if you don't want to mimic that setup, you can remove this container.
+  # If you do remove it, also remove depends_on: and network_mode: from the tranmission container and move the ports: 
+  # from the wireguard container to the transmission container (you can remove the WireGuard listening port).
+  wireguard:
+    container_name: wireguard
+    environment:
+      - PUID=1000 # Change this to your host OS users UID.
+      - PGID=1000 # Change this to your host OS users GID.
+      - TZ=Europe/London # Update this to your local timezone in TZ database format.
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    ports: # Port openings are handled through the VPN container when a VPN sits in front of the container.
+      - '51820:51820/udp' # Default WireGuard listening port
+      - '9091:9091' # The web UI will be accessible at the address: transmission:9091
+      - '51413:51413' # Port used by Transmission. 
+      - '51413:51413/udp' # Port used by Transmission. 
+      - '59978:59978' # BitTorrent port, this should be port forwarded for maximum connectibility.
+    volumes:
+      - '/path/to/your/folder/containing/your/wg0/file:/config' # Path to where your wg0.conf (Wireguard config) will be saved.
+      - '/lib/modules:/lib/modules' # Path to your system modules so that the container can read the Wireguard module from the host OS, don't touch unless necessary!
+    restart: unless-stopped
+    image: linuxserver/wireguard
+    networks:
+      - your_network_name_here # Change this to the network you created for your automation containers.
+
+  transmission:
+    container_name: transmission
+    image: lscr.io/linuxserver/transmission
+    depends_on: # Only necessary if using Wireguard VPN in front of container.
+      - wireguard
+    network_mode: "service:wireguard" # Only necessary if using Wireguard VPN in front of container.
+    environment:
+      - PUID=1000 # Change this to your host OS users UID.
+      - PGID=1000 # Change this to your host OS users GID.
+      - TZ=Europe/London # Update this to your local timezone in TZ database format.
+      - USER=your_secure_username # The username your transmission web UI will use, pick something unique and secure!
+      - PASS=your_secure_password # The password your transmission web UI will use, pick something unique and secure!
+    volumes:
+      - /your/path/to/your/transmission/config:/config # Path to where your persistent Transmission data will be stored.
+      - /your/path/to/your/data:/data:rshared # Path to where your downloads and media will be stored.
+      - /your/path/to/your/watch/folder:/watch # Path to where your /watch folder will be stored.
+    restart: unless-stopped
+
+networks:
+  your_network_name_here: # Change this to the network you created for your automation containers.
+    external: true
