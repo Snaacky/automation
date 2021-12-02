@@ -83,7 +83,7 @@ For containers that use larger amounts of data (such as Plex's metadata) or for 
 
 [Flood](https://flood.js.org/) is a front-end web UI for various torrent clients. It offers mobile responsiveness and a better more modern experience than the stock Transmission web UI.
 
-[Prowlarr](https://github.com/Prowlarr/Prowlarr) is used for connecting to torrent trackers that do not natively support Sonarr or Radarr via a Torznab proxy. It will automatically link in with your Sonarr and Radarr once setup properly and doesn't require manual setup for both *arr services unlike Jackett. I primarily use torrent trackers and Usenet indexers that natively link in with Radarr but I use Prowlarr for the ones that do not.
+[Prowlarr](https://github.com/Prowlarr/Prowlarr) is used for connecting to torrent trackers that do not natively support Sonarr or Radarr via a Torznab proxy. It will automatically link in with your Sonarr and Radarr once setup properly and doesn't require manual setup for both *arr services unlike Jackett. I primarily use torrent trackers and Usenet indexers that natively link in with *arr services but I use Prowlarr for the ones that do not.
 
 [Requestrr](https://github.com/darkalfx/requestrr) is a Discord bot that can be added to a server and used for easily processing requests without having to reveal your Sonarr or Radarr credentials to 3rd parties. It's extremely useful if you're offering a Plex share for others and it also allows you to split TV and anime by category for individual *arr profiles, language, and save pathing unlike Ombi.
 
