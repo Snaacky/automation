@@ -38,7 +38,7 @@ services:
     volumes:
         - /your/path/to/your/rclone/mount:/mnt/mediaefs:shared # Change this to the path you want to mount the rclone mount to on the host OS.
         - /your/path/to/your/rclone/config:/config:rw # Change this to the place you plan to store your .rclone.conf file in.
-        - /your/path/to/your/plex/cache:/cache:rw # Change this to the place you plan to your Plex cache to. NOTE: This can get VERY BIG with a lot of activity!
+        - /your/path/to/your/plex/cache:/cache:rw # Change this to the place you plan to store your rclone cache for Plex at. NOTE: This can get VERY BIG with a lot of remote activity!
     image: mumiehub/rclone-mount
 
 # I removed my second rclone container for simplicity sake but you can simply duplicate the rclone-one container
