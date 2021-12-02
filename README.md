@@ -4,7 +4,7 @@ Home theater automation scripts for downloading and processing.
 # Introduction
 This repository assumes you have a baseline understanding of how Docker works, what a docker-compose file is, and how to configure one. 
 
-Most of the services/containers included in this setup can operate independently and thus can be added or removed as you feel applicable to your own personal setup. Any services that are inherently bound to another container (i.e Transmission and WireGuard or Plex and rclone) are put together in the same `docker-compose.yml` file and can still be detangled from one another but will require a tiny bit more hands-on config editing.
+Most of the services/containers included in this setup operate independently and thus can be added or removed as you feel applicable to your own personal setup. Any services that are inherently bound to another container (i.e Transmission and WireGuard or Plex and rclone) are put together in the same `docker-compose.yml` file and can still be detangled from one another but will require a tiny bit more hands-on config editing. Nonetheless, instructions are included in the comments of those files for how to detangle them.
 
 ## Setup:
 1. [Create a network for your containers to talk to each other on](https://docs.docker.com/engine/reference/commandline/network_create/)
