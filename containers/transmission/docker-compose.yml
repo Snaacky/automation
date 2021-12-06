@@ -2,8 +2,8 @@
 version: "3.3"
 services:
   # My Transmission client sits behind a Wireguard VPN, if you don't want to mimic that setup, you can remove this container.
-  # If you do remove it, also remove depends_on: and network_mode: from the tranmission container and move the ports: 
-  # from the wireguard container to the transmission container (you can remove the WireGuard listening port).
+  # If you do remove it, also remove depends_on: and network_mode: from the Transmission container and move the ports: section
+  # from the Wireguard container to the Transmission container (you can remove the unused WireGuard listening port entry as well).
   wireguard:
     container_name: wireguard
     environment:
@@ -20,7 +20,7 @@ services:
       - '9091:9091' # The web UI will be accessible at the address: transmission:9091
       - '51413:51413' # Port used by Transmission. 
       - '51413:51413/udp' # Port used by Transmission. 
-      - '59978:59978' # BitTorrent port, this should be port forwarded for maximum connectibility.
+      - '51337:51337' # BitTorrent port, this should be port forwarded for maximum connectibility.
     volumes:
       - '/path/to/your/folder/containing/your/wg0/file:/config' # Path to where your wg0.conf (Wireguard config) will be saved.
       - '/lib/modules:/lib/modules' # Path to your system modules so that the container can read the Wireguard module from the host OS, don't touch unless necessary!
@@ -31,7 +31,7 @@ services:
 
   transmission:
     container_name: transmission
-    image: lscr.io/linuxserver/transmission
+    image: tonyrl/transmission-skip-hash-check # Using a modified Transmission with some QoL improvements.
     depends_on: # Only necessary if using Wireguard VPN in front of container.
       - wireguard
     network_mode: "service:wireguard" # Only necessary if using Wireguard VPN in front of container.
