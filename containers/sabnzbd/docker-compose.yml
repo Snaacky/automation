@@ -15,3 +15,9 @@ services:
       - 8080:8080  # The web UI will be accessible at the address: sabnzbd:8080
       - 9090:9090  # You can also setup SSL on port 9090 but that's out of the scope of this repo.
     restart: unless-stopped
+    networks:
+      - your_network_goes_here
+
+networks:
+  your_network_goes_here:
+    external: true
